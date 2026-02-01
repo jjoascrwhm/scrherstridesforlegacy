@@ -43,6 +43,41 @@
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
     .section-divider { height: 1px; background: linear-gradient(90deg, transparent, #D4AF37, transparent); }
+    .lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.lightbox:target {
+  display: flex;
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  text-decoration: none;
+  font-weight: 300;
+  opacity: 0.8;
+}
+.lightbox-close:hover {
+  opacity: 1;
+}
+.cursor-zoom-in {
+  cursor: zoom-in;
+}
   </style>
 </head>
 
@@ -242,11 +277,13 @@
           <div class="bg-white rounded-2xl p-6 border-2 border-pink-200 shadow-lg">
             <h3 class="font-display text-xl font-bold text-pink mb-4">T-Shirt Preview</h3>
             <div class="grid grid-cols-2 gap-4">
-              <img src="tshirt-1.jpg" alt="Her Strides for Legacy t-shirt (front)" class="rounded-xl border border-pink-200 object-cover w-full h-56" />
-              <img src="tshirt-2.jpg" alt="Her Strides for Legacy t-shirt (back)" class="rounded-xl border border-pink-200 object-cover w-full h-56" />
-            </div>
-            <p class="text-slate-600 text-sm mt-4"></p>
-          </div>
+  <a href="#img1" class="block hover:opacity-90 transition-opacity cursor-zoom-in">
+    <img src="tshirt-1.jpg" alt="Her Strides for Legacy t-shirt (front)" class="rounded-xl border border-pink-200 object-cover w-full h-56" />
+  </a>
+  <a href="#img2" class="block hover:opacity-90 transition-opacity cursor-zoom-in">
+    <img src="tshirt-2.jpg" alt="Her Strides for Legacy t-shirt (back)" class="rounded-xl border border-pink-200 object-cover w-full h-56" />
+  </a>
+</div>
 
           <!-- Purchase card -->
           <div class="bg-white rounded-xl p-6 border-2 border-pink-200 shadow-lg">
@@ -454,7 +491,7 @@
             </div>
             <div class="flex-shrink-0">
               <a href="#" id="btn-legacy-deadline"
-                 class="inline-block gradient-gold text-white font-semibold px-6 py-3 rounded-full hover:scale-105 transition-transform">
+                 class="inline-block border-2 border-pink text-pink px-6 py-3 rounded-full hover:bg-pink hover:text-white transition-all">
                 Submit Now
               </a>
             </div>
@@ -651,6 +688,16 @@
       });
     });
   </script>
+        <!-- Lightbox overlays for T-shirt images -->
+<div id="img1" class="lightbox" onclick="this.style.display='none'">
+  <a href="#" class="lightbox-close" onclick="event.stopPropagation()">&times;</a>
+  <img src="tshirt-1.jpg" alt="T-shirt front large view" />
+</div>
+
+<div id="img2" class="lightbox" onclick="this.style.display='none'">
+  <a href="#" class="lightbox-close" onclick="event.stopPropagation()">&times;</a>
+  <img src="tshirt-2.jpg" alt="T-shirt back large view" />
+</div>
 </body>
 </html>
 
